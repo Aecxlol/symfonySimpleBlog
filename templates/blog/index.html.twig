@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+<h1>LISTE DES ARTICLES</h1>
+<hr>
+<section class="articles">
+    {% for article in articles %}
+        <article>
+            <h3><u><strong>{{ article.title }}</strong></u></h3>
+            <div class="metadata"><strong>Créé le </strong>{{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }}</div>
+            <div class="content">
+                <img src="{{ article.image }}" alt="">
+                {{ article.content | raw }}
+                <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+            </div>
+        </article>
+        <hr>
+    {% endfor %}
+</section>
+{% endblock %}
